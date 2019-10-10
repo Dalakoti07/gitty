@@ -96,8 +96,9 @@ public class MainActivity extends AppCompatActivity implements customAdapter.onI
         // https://www.youtube.com/watch?v=69C1ljfDvl0
         // now this above position is given by the customAdapter class
         // what is happening is that mainActivity has implemented a clickListener, and passing the ......... see video
-        Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent(this,profile.class);
-        intent
+        Toast.makeText(this, Integer.toString(position), Toast.LENGTH_SHORT).show();
+        Intent intent= new Intent(this,profiledetail.class);
+        intent.putExtra("profile",githubUsers.get(position));
+        startActivity(intent);
     }
 }

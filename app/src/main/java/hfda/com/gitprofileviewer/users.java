@@ -1,8 +1,9 @@
 package hfda.com.gitprofileviewer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class users {
+public class users implements Serializable {
     private String login,avatarUrl,html_url,score;
 
     public String getLogin() {
