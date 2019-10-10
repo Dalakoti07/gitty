@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         etUser=(EditText) findViewById(R.id.etUser);
 
 //        setting this layout manager is important otherwise things won't work
+//        layout managers are of three types, linear ,gridLayout and staggeredGridLayout
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnSearch.setOnClickListener(new View.OnClickListener() {

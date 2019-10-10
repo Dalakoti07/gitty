@@ -39,7 +39,7 @@ public class customAdapter extends RecyclerView.Adapter<customAdapter.ViewHolder
         this.context=context;
     }
 
-    // this would create a viewHolder
+    //this would inflate the viewHolder and return it
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
