@@ -7,14 +7,14 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class profiledetail extends AppCompatActivity {
+public class eachUser extends AppCompatActivity {
 
     String userName,url,stars;
     private TextView tv_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_each_user);
         //get the intent
         Intent intent=getIntent();
         tv_data=(TextView) findViewById(R.id.data);
