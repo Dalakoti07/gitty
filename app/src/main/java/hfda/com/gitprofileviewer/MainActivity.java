@@ -1,5 +1,6 @@
 package hfda.com.gitprofileviewer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,7 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements customAdapter.onIemClickListener{
     private TextView tvResult;
     private Button btnSearch;
     private EditText etUser;
@@ -86,7 +87,17 @@ public class MainActivity extends AppCompatActivity {
         });
         // Add the request to the RequestQueue.
         queue.add(request);
-        adapter=new customAdapter(githubUsers,this);
+        adapter=new customAdapter(githubUsers,this,this);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+        // https://www.youtube.com/watch?v=69C1ljfDvl0
+        // now this above position is given by the customAdapter class
+        // what is happening is that mainActivity has implemented a clickListener, and passing the ......... see video
+        Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+        Intent intent= new Intent(this,profile.class);
+        intent
     }
 }

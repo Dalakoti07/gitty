@@ -19,24 +19,35 @@ import java.util.ArrayList;
 public class customAdapter extends RecyclerView.Adapter<customAdapter.ViewHolder>{
     private ArrayList<users> gitUsers=new ArrayList<>();
     private Context context;
+    private onIemClickListener mOnItemClickListener;
 
     // this ViewHolder internal class define each view in the itemView and populate the values in it when it is called by the recyclerView
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView url,userName,score;
+        onIemClickListener mOnItemClickListener;
         private ImageView avatarUrl;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView,onIemClickListener listener) {
             super(itemView);
             url=(TextView) itemView.findViewById(R.id.tvUrl);
             userName=(TextView) itemView.findViewById(R.id.tvUserName);
             score=(TextView) itemView.findViewById(R.id.tvScore);
             avatarUrl=(ImageView) itemView.findViewById(R.id.profileImage);
+            this.mOnItemClickListener=listener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mOnItemClickListener.onItemClicked(getAdapterPosition());
         }
     }
 
     // declaring the constructor
-    public customAdapter(ArrayList<users> users,Context context){
+    public customAdapter(ArrayList<users> users,Context context,onIemClickListener listener){
         this.gitUsers=users;
         this.context=context;
+        this.mOnItemClickListener=listener;
     }
 
     //this would inflate the viewHolder and return it
@@ -44,7 +55,7 @@ public class customAdapter extends RecyclerView.Adapter<customAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v=LayoutInflater.from(parent.getContext()).inflate(R.layout.each_user,parent,false);
-        return new ViewHolder(v);
+        return new ViewHolder(v,mOnItemClickListener);
     }
 
     // this set value of each item in recyclerView
@@ -62,5 +73,10 @@ public class customAdapter extends RecyclerView.Adapter<customAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return gitUsers.size();
+    }
+
+    // now this is the onItemClick Listener, this clickListenet need to be implemented by mainActivity which would click the item
+    public interface onIemClickListener{
+        void onItemClicked(int position);
     }
 }
